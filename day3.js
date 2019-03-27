@@ -54,6 +54,7 @@ for (i in Friends) {
 
   //console.log(`${Friends[i].name} is a professional ${Friends[i].jobTitle}`);
 }
+console.log('\n');
 
 let cypher = {
   a: 1,
@@ -65,15 +66,15 @@ let cypher = {
 function decode(coded) {
   let codedWords = coded.split(" ");
   let decoding = [];
-  let legend= Object.keys(cypher);
+ // let legend= Object.keys(cypher);
  // for (j in legend) {
     codedWords.forEach(word => {
       let firstLetter = word.charAt(0);
       let secretLetterIndex= cypher[firstLetter];
       if (secretLetterIndex) {
-        console.log(`${word},  first: ${firstLetter}, secretIndex: ${secretLetterIndex}`)
+    //    console.log(`${word},  first: ${firstLetter}, secretIndex: ${secretLetterIndex}`)
         decoding.push( word.charAt(secretLetterIndex) );
-        console.log(decoding);
+     //   console.log(decoding);
       }
       else decoding.push(' ');
     }

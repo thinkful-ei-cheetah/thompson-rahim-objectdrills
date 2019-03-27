@@ -55,27 +55,36 @@ for (i in Friends) {
   //console.log(`${Friends[i].name} is a professional ${Friends[i].jobTitle}`);
 }
 
+let cypher = {
+  a: 1,
+  b: 2,
+  c: 3,
+  d: 4
+};
+
 function decode(coded) {
-  const codedWords = coded.split(" ");
-  let decodedWord = [];
+  let codedWords = coded.split(" ");
+  let decoding = [];
+  let legend= Object.keys(cypher);
+ // for (j in legend) {
+    codedWords.forEach(word => {
+      let firstLetter = word.charAt(0);
+      let secretLetterIndex= cypher[firstLetter];
+      if (secretLetterIndex) {
+        console.log(`${word},  first: ${firstLetter}, secretIndex: ${secretLetterIndex}`)
+        decoding.push( word.charAt(secretLetterIndex) );
+        console.log(decoding);
+      }
+      else decoding.push(' ');
+    }
+    );
+ 
 
-  let cypher = {
-    a: 1,
-    b: 2,
-    c: 3,
-    d: 4
-  };
-
-  for (let j = 0; j < cypher.length; j++) {
-    cypher[j];
-  }
-
-  for (let i = 0; i < codedWords.length; i++) {
+  // for (let i = 0; i < codedWords.length; i++) {
     // cypher.hasOwnProperty(codedWords[i].charAt(0));
-
-    const firstLetter = codedWords[i].charAt(0);
-    const secretLetter = cypher.codedWords[i].charAt(0);
-  }
+    // const firstLetter = codedWords[i].charAt(0);
+    // const secretLetter = cypher.codedWords[i].charAt(0);
+  
   // for (let i = 0; i < newWord.length; i++) {
   //   switch (newWord[i].charAt(0)) {
   //     case "a":
@@ -95,7 +104,7 @@ function decode(coded) {
   //       break;
   //   }
   // }
-  return decodedWord.join("");
+  return decoding.join("");
 }
 const coded = "craft block argon meter bells brown croon droop";
 console.log(decode(coded));

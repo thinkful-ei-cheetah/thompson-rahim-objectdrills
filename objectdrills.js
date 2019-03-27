@@ -61,6 +61,144 @@ function enrollInSummerSchool(students) {
   return students;
 }
 
+function findById(items, idNum) {
+  for (const prop in items) {
+    if (items[prop].id === idNum) {
+      return items[prop];
+    }
+  }
+}
+
+
+function validateKeys(object, expectedKeys){
+// console.log( ( Object.keys(object), expectedKeys) ) ;
+  let keys = ( Object.keys(object) );
+ // console.log(`keys: ${typeof key}`);
+ if (expectedKeys.length === keys.length){   //same length?
+        for (i in expectedKeys) {
+        let index = (keys.findIndex(key => expectedKeys[i] === key ) );   //gets key location
+        let found = (index != -1);    //checks if in keys
+        if (!found){         //breaks if not
+          return false;    
+          }
+        }               //end of loop
+        
+        return true;     
+      }
+      else
+  return false;
+}
+
+// running the function with `objectA` and `expectedKeys`
+// should return `true`
+const objectA = {
+  id: 2,
+  name: 'Jane Doe',
+  age: 34,
+  city: 'Chicago',
+};
+
+// running the function with `objectB` and `expectedKeys`
+// should return `false`
+const objectB = {
+  id: 3,
+  age: 33,
+  city: 'Peoria',
+};
+
+const expectedKeys = ['id', 'name', 'age', 'city'];
+
+/* From here down, you are not expected to 
+   understand.... for now :)  
+   
+   
+   Nothing to see here!
+   
+*/
+
+function testIt() {
+  const objectA = {
+    id: 2,
+    name: 'Jane Doe',
+    age: 34,
+    city: 'Chicago',
+  };
+
+  const objectB = {
+    id: 3,
+    age: 33,
+    city: 'Peoria',
+  };
+
+  const objectC = {
+    id: 9,
+    name: 'Billy Bear',
+    age: 62,
+    city: 'Milwaukee',
+    status: 'paused',
+  };
+
+  const objectD = {
+    foo: 2,
+    bar: 'Jane Doe',
+    bizz: 34,
+    bang: 'Chicago',
+  };
+
+  const expectedKeys = ['id', 'name', 'age', 'city'];
+
+  if (typeof validateKeys(objectA, expectedKeys) !== 'boolean') {
+    console.error('FAILURE: validateKeys should return a boolean value');
+    return;
+  }
+
+  if (!validateKeys(objectA, expectedKeys)) {
+    console.error(
+      `FAILURE: running validateKeys with the following object and keys
+      should return true but returned false:
+      Object: ${JSON.stringify(objectA)}
+      Expected keys: ${expectedKeys}`
+    );
+    return;
+  }
+
+  if (validateKeys(objectB, expectedKeys)) {
+    console.error(
+      `FAILURE: running validateKeys with the following object and keys
+      should return false but returned true:
+      Object: ${JSON.stringify(objectB)}
+      Expected keys: ${expectedKeys}`
+    );
+    return;
+  }
+
+  if (validateKeys(objectC, expectedKeys)) {
+    console.error(
+      `FAILURE: running validateKeys with the following object and keys
+      should return false but returned true:
+      Object: ${JSON.stringify(objectC)}
+      Expected keys: ${expectedKeys}`
+    );
+    return;
+  }
+
+  if (validateKeys(objectD, expectedKeys)) {
+    console.error(
+      `FAILURE: running validateKeys with the following object and keys
+      should return false but returned true:
+      Object: ${JSON.stringify(objectD)}
+      Expected keys: ${expectedKeys}`
+    );
+    return;
+  }
+
+  console.log('SUCCESS: validateKeys is working');
+}
+
+testIt();
+
+
+/*
 // you can pass in `scratchData` to test out `findByid`
 // your function
 const scratchData = [
@@ -69,13 +207,6 @@ const scratchData = [
   { id: 19, foo: "bazz" }
 ];
 
-function findById(items, idNum) {
-  for (const prop in items) {
-    if (items[prop].id === idNum) {
-      return items[prop];
-    }
-  }
-}
 
 //
 

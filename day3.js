@@ -79,7 +79,6 @@ function decode(coded) {
       else decoding.push(' ');
     }
     );
- 
 
   // for (let i = 0; i < codedWords.length; i++) {
     // cypher.hasOwnProperty(codedWords[i].charAt(0));
@@ -109,3 +108,58 @@ function decode(coded) {
 }
 const coded = "craft block argon meter bells brown croon droop";
 console.log(decode(coded));
+
+
+
+
+function createCharacter( Name , Nickname ,Race , Origin , Attack , Defense ) {
+  let character = {
+  Name,
+  Nickname,
+  Race,
+  Origin,
+  Attack,
+  Defense,
+  describe: function() {
+    console.log(`${this.Name} is a ${this.Race} from ${this.Origin}.`);
+  },
+  evaluateFight: function(character){
+    console.log(`Your opponent takes ${this.Attack-character.Defense} damage 
+         and you receive ${character.Attack-this.Defense} damage`);
+
+  }
+};
+return character;
+}
+let characters= [
+  createCharacter('Gandalf the White','gandalf','Wizard','Middle Earth', 10,  6 ),
+  createCharacter('Bilbo Baggins' ,'bilbo','Hobbit','The Shire',2 , 1  ),
+  createCharacter('Frodo Baggins','frodo','Hobbit','The Shire', 3  , 2  ),
+  createCharacter('Aragorn son of Arathorn','aragorn', 'Man' , 'Dunnedain' , 6  , 8  ),
+  createCharacter('Legolas', 'legolas' ,'Elf', 'Woodland Realm', 8 , 5 ),
+]
+
+characters.push( createCharacter('Arwen Undomiel','arwen','Half-Elf', 'Rivendell', 4, 9) );
+
+function getFighter(search){
+  let found = characters.find(character => character.Nickname == search);
+  if (found) {
+      found.describe();
+    }
+    else console.log('Lost in the Shire!');
+  return found;
+}
+let search= 'aragorn'
+let first = getFighter(search);
+let hobbits= characters.filter(character => character.Race == "Hobbit");
+let strong= characters.filter(character => character.Attack > 5);
+
+search= 'legolas';
+let next = getFighter(search);
+next.evaluateFight(first);
+
+// console.log(hobbits);
+// console.log(strong);
+
+
+
